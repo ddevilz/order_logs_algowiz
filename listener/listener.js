@@ -1,11 +1,11 @@
-import WebSocket from 'ws';
-import { filterRedundant } from './filter.js';
-import { determineAction } from './action.js';
-import { aggregateUpdates } from './aggregator.js';
+import WebSocket from "ws";
+import { filterRedundant } from "./filter.js";
+import { determineAction } from "./action.js";
+import { aggregateUpdates } from "./aggregator.js";
 
-const ws = new WebSocket('ws://localhost:8765');
+const ws = new WebSocket("ws://localhost:8765");
 
-ws.on('message', (message) => {
+ws.on("message", (message) => {
   const order = JSON.parse(message);
 
   if (!filterRedundant(order)) {
@@ -23,10 +23,10 @@ ws.on('message', (message) => {
   }
 });
 
-ws.on('open', () => {
-  console.log('Connected to WebSocket server');
+ws.on("open", () => {
+  console.log("Connected to WebSocket server");
 });
 
-ws.on('close', () => {
-  console.log('Disconnected from WebSocket server');
+ws.on("close", () => {
+  console.log("Disconnected from WebSocket server");
 });
